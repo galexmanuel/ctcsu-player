@@ -24,8 +24,8 @@ package edu.unm.casaa.main;
  * @author UNM CASAA
  */
 public class Version {
-    public static final int MAJOR = 0;
-    public static final int MINOR = 10;
+    public static final int MAJOR = 1;
+    public static final int MINOR = 2;
     public static final int REVISION = 0;
 
     public static String versionString() {
