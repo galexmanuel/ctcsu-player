@@ -28,10 +28,6 @@
  */
 package javazoom.jlgui.basicplayer;
 
-import javazoom.spi.PropertiesContainer;
-import org.tritonus.share.sampled.TAudioFormat;
-import org.tritonus.share.sampled.file.TAudioFileFormat;
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
@@ -261,16 +257,7 @@ public class BasicPlayer implements BasicController, Runnable {
             }
             createLine();
             // Notify listeners with AudioFileFormat properties.
-            Map properties = null;
-            if (m_audioFileFormat instanceof TAudioFileFormat) {
-                // Tritonus SPI compliant audio file format.
-                properties = ((TAudioFileFormat) m_audioFileFormat).properties();
-                // Clone the Map because it is not mutable.
-                properties = deepCopy(properties);
-            }
-            else {
-                properties = new HashMap();
-            }
+            Map properties = new HashMap();
             // Add JavaSound properties.
             if (m_audioFileFormat.getByteLength() > 0) {
                 properties.put("audio.length.bytes", new Integer(m_audioFileFormat.getByteLength()));
@@ -297,11 +284,6 @@ public class BasicPlayer implements BasicController, Runnable {
             }
             if (audioFormat.getChannels() > 0) {
                 properties.put("audio.channels", new Integer(audioFormat.getChannels()));
-            }
-            if (audioFormat instanceof TAudioFormat) {
-                // Tritonus SPI compliant audio format.
-                Map addproperties = ((TAudioFormat) audioFormat).properties();
-                properties.putAll(addproperties);
             }
             // Add SourceDataLine
             properties.put("basicplayer.sourcedataline", m_line);
@@ -654,14 +636,7 @@ public class BasicPlayer implements BasicController, Runnable {
                             Iterator it = m_listeners.iterator();
                             while (it.hasNext()) {
                                 BasicPlayerListener bpl = (BasicPlayerListener) it.next();
-                                if (m_audioInputStream instanceof PropertiesContainer) {
-                                    // Pass audio parameters such as instant bitrate, ...
-                                    Map properties = ((PropertiesContainer) m_audioInputStream).properties();
-                                    bpl.progress(nEncodedBytes, m_line.getMicrosecondPosition(), pcm, properties);
-                                }
-                                else {
-                                    bpl.progress(nEncodedBytes, m_line.getMicrosecondPosition(), pcm, empty_map);
-                                }
+                                bpl.progress(nEncodedBytes, m_line.getMicrosecondPosition(), pcm, empty_map);
                             }
                         }
                     } catch (IOException e) {
