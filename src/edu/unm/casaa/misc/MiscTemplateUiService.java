@@ -18,21 +18,21 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.misc;
 
-import javax.swing.JPanel;
-
 import edu.unm.casaa.main.ActionTable;
 import edu.unm.casaa.main.TemplateUiService;
 
-public class MiscTemplateUiService extends TemplateUiService {
-	
-	private MiscTemplateView view 	= null;
+import javax.swing.*;
 
-	public MiscTemplateUiService( ActionTable actionTable ) {
-		view = new MiscTemplateView( actionTable );
-	}
-	
-	public JPanel getTemplateView() {
-		return view;
-	}
+public class MiscTemplateUiService extends TemplateUiService {
+
+    private MiscTemplateView view = null;
+
+    public MiscTemplateUiService(ActionTable actionTable) {
+        view = new MiscTemplateView(actionTable);
+    }
+
+    public JPanel getTemplateView() {
+        return view;
+    }
 
 }

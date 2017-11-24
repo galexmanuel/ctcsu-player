@@ -1,12 +1,7 @@
 package edu.unm.casaa.main;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JWindow;
+import javax.swing.*;
+import java.awt.*;
 
 public class SplashWindow extends JWindow {
 
@@ -15,17 +10,17 @@ public class SplashWindow extends JWindow {
     public SplashWindow() {
         JPanel content = (JPanel) getContentPane();
 
-        content.setBackground( Color.white );
+        content.setBackground(Color.white);
 
-        int         width   = 800;
-        int         height  = 600;
+        int width = 800;
+        int height = 600;
 
-        setSize( width, height );
-        setLocationRelativeTo( null ); // Center on screen.
+        setSize(width, height);
+        setLocationRelativeTo(null); // Center on screen.
 
         // Build the splash screen.
-        JLabel image    = new JLabel( new ImageIcon( "images/Splash.jpg" ) );
+        JLabel image = new JLabel(new ImageIcon("images/Splash.jpg"));
 
-        content.add( image, BorderLayout.CENTER );
+        content.add(image, BorderLayout.CENTER);
     }
 }

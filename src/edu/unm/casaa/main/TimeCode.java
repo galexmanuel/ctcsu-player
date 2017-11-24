@@ -23,24 +23,24 @@ import java.util.StringTokenizer;
 // Convenience class, converts representation of time between HH:MM::SS string and integer seconds.
 public class TimeCode {
 
-	public static String toString( int seconds ) {
-		int hours 	= seconds / 3600;
-		int minutes = (seconds / 60) - (hours * 60);
+    public static String toString(int seconds) {
+        int hours = seconds / 3600;
+        int minutes = (seconds / 60) - (hours * 60);
 
-		seconds = seconds - (hours * 3600) - (minutes * 60);
+        seconds = seconds - (hours * 3600) - (minutes * 60);
 
-		return String.format( "%d:%02d:%02d", hours, minutes, seconds );
-	}
+        return String.format("%d:%02d:%02d", hours, minutes, seconds);
+    }
 
-	public static int toSeconds( String string ) {
-		StringTokenizer st 		= new StringTokenizer( string, ":" );
+    public static int toSeconds(String string) {
+        StringTokenizer st = new StringTokenizer(string, ":");
 
-		assert( st.countTokens() == 3 );
+        assert (st.countTokens() == 3);
 
-		int	hours 	= Integer.parseInt( st.nextToken() );
-		int minutes = Integer.parseInt( st.nextToken() );
-		int	seconds	= Integer.parseInt( st.nextToken() );
+        int hours = Integer.parseInt(st.nextToken());
+        int minutes = Integer.parseInt(st.nextToken());
+        int seconds = Integer.parseInt(st.nextToken());
 
-		return (hours * 3600) + (minutes * 60) + seconds;
-	}
+        return (hours * 3600) + (minutes * 60) + seconds;
+    }
 }

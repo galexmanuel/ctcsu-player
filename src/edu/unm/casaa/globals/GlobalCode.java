@@ -18,40 +18,37 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.globals;
 
-import java.util.Vector;
-
 import edu.unm.casaa.main.MainController;
 
-public class GlobalCode { 
-    private static final long           serialVersionUID = 1L;
+import java.util.Vector;
+
+public class GlobalCode {
+    private static final long serialVersionUID = 1L;
 
     // List of available codes. Built when we parse XML file.
-    private static Vector< GlobalCode > list             = new Vector< GlobalCode >();
+    private static Vector<GlobalCode> list = new Vector<GlobalCode>();
 
-    public int                          value            = 0;
-    public String                       name;                                         // Name for use in file. Ex: "ACCEPTANCE".
-    public String                       label;                                        // Human-readable label for use in UI. Ex: "Acceptance".
-    public int                          defaultRating    = 1;
-    public int                          minRating        = 1;
-    public int                          maxRating        = 5;
+    public int value = 0;
+    public String name;                                         // Name for use in file. Ex: "ACCEPTANCE".
+    public String label;                                        // Human-readable label for use in UI. Ex: "Acceptance".
+    public int defaultRating = 1;
+    public int minRating = 1;
+    public int maxRating = 5;
 
     // Class:
 
     // Add new code.  Returns true on success, shows warning dialog on failure.
-    public static boolean   addCode( GlobalCode newCode ) {
+    public static boolean addCode(GlobalCode newCode) {
         // Check that we're not duplicating an existing value or label.
-        for( int i = 0; i < list.size(); i++ ) {
-            GlobalCode code = list.get( i );
+        for (int i = 0; i < list.size(); i++) {
+            GlobalCode code = list.get(i);
 
-            if( code.value == newCode.value || code.name.equals( newCode.name ) ) {
-                MainController.instance.showWarning(
-                        "User Code Error",
-                        "New global code " + 
-                        newCode.toDisplayString() + " conflicts with existing global code " + code.toDisplayString() );
+            if (code.value == newCode.value || code.name.equals(newCode.name)) {
+                MainController.instance.showWarning("User Code Error", "New global code " + newCode.toDisplayString() + " conflicts with existing global code " + code.toDisplayString());
                 return false;
             }
         }
-        list.add( newCode );
+        list.add(newCode);
         return true;
     }
 
@@ -60,17 +57,17 @@ public class GlobalCode {
     }
 
     // PRE: index < numCodes().
-    public static GlobalCode codeAtIndex( int index ) {
-        return list.get( index );
+    public static GlobalCode codeAtIndex(int index) {
+        return list.get(index);
     }
 
     // PRE: code exists with given value.
-    public static GlobalCode codeWithValue( int value ) {
+    public static GlobalCode codeWithValue(int value) {
         // Check user codes.
-        for( int i = 0; i < list.size(); i++ ) {
-            GlobalCode code = list.get( i );
+        for (int i = 0; i < list.size(); i++) {
+            GlobalCode code = list.get(i);
 
-            if( code.value == value ) {
+            if (code.value == value) {
                 return code;
             }
         }
@@ -79,12 +76,12 @@ public class GlobalCode {
     }
 
     // PRE: code exists with given name.
-    public static GlobalCode codeWithName( String name ) {
+    public static GlobalCode codeWithName(String name) {
         // Check user codes.
-        for( int i = 0; i < list.size(); i++ ) {
-            GlobalCode code = list.get( i );
+        for (int i = 0; i < list.size(); i++) {
+            GlobalCode code = list.get(i);
 
-            if( code.name.equals( name ) ) {
+            if (code.name.equals(name)) {
                 return code;
             }
         }
@@ -94,10 +91,10 @@ public class GlobalCode {
 
     // Instance:
 
-    public GlobalCode( int value, String name, String label ) {
-        this.value  = value;
-        this.name   = name;
-        this.label  = label;
+    public GlobalCode(int value, String name, String label) {
+        this.value = value;
+        this.name = name;
+        this.label = label;
     }
 
     public GlobalCode() {

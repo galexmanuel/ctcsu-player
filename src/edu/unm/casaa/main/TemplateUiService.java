@@ -18,12 +18,12 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.main;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 //this could or should be an abstract class
 public abstract class TemplateUiService {
 
-	public JPanel getTemplateView() {
-		return null;
-	}
+    public JPanel getTemplateView() {
+        return null;
+    }
 }

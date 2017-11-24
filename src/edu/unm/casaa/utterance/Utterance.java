@@ -22,32 +22,43 @@ import edu.unm.casaa.misc.MiscCode;
 
 public interface Utterance {
 
-	public int getEnum();
-	public String getStartTime();	
-	public String getEndTime();
-	public int getStartBytes();
-	public int getEndBytes();
+    public int getEnum();
 
-	public boolean isParsed();
-	public boolean isCoded();
-	public MiscCode getMiscCode();
-	
-	// Strip end data, so isParsed() will return false.  Preserves start data.
-	public void	stripEndData();
-	
-	// Strip code, so isCoded() will return false.  Writes MiscCode.INVALID_CODE.
-	public void stripMiscCode();
+    public String getStartTime();
 
-	// Enum and start time will be initialized by derived class constructor.
-	public void	setEnum(int index);
-	public void setEndTime(String end);	
-	public void setEndBytes(int bytes);
-	public void setMiscCodeByValue(int value);
-	public void setMiscCode(MiscCode code);
-	
-	// Output order should be tab-delimited:
-	// order startCode endCode [codeCode codeString] "\r\n"
-	// The section in [] is written only if utterance has been coded.
-	public String writeParsed();
-	public String writeCoded();
+    public String getEndTime();
+
+    public int getStartBytes();
+
+    public int getEndBytes();
+
+    public boolean isParsed();
+
+    public boolean isCoded();
+
+    public MiscCode getMiscCode();
+
+    // Strip end data, so isParsed() will return false.  Preserves start data.
+    public void stripEndData();
+
+    // Strip code, so isCoded() will return false.  Writes MiscCode.INVALID_CODE.
+    public void stripMiscCode();
+
+    // Enum and start time will be initialized by derived class constructor.
+    public void setEnum(int index);
+
+    public void setEndTime(String end);
+
+    public void setEndBytes(int bytes);
+
+    public void setMiscCodeByValue(int value);
+
+    public void setMiscCode(MiscCode code);
+
+    // Output order should be tab-delimited:
+    // order startCode endCode [codeCode codeString] "\r\n"
+    // The section in [] is written only if utterance has been coded.
+    public String writeParsed();
+
+    public String writeCoded();
 }

@@ -23,10 +23,9 @@
 package javazoom.jlgui.basicplayer;
 
 /**
- * This class implements player events. 
+ * This class implements player events.
  */
-public class BasicPlayerEvent
-{
+public class BasicPlayerEvent {
     public static final int UNKNOWN = -1;
     public static final int OPENING = 0;
     public static final int OPENED = 1;
@@ -45,7 +44,7 @@ public class BasicPlayerEvent
     private Object source = null;
     private Object description = null;
 
-	//====================================================================
+    //====================================================================
     // Changed for CASAA, 2010
     // Events are reported by launchers that run in separate threads, so it
     // is possible for listeners to receive events out of order.  Therefore,
@@ -55,14 +54,14 @@ public class BasicPlayerEvent
 
     /**
      * Constructor
-     * @param source of the event
-     * @param code of the envent
+     *
+     * @param source   of the event
+     * @param code     of the envent
      * @param position optional stream position
-     * @param value opitional control value
-     * @param desc optional description
+     * @param value    opitional control value
+     * @param desc     optional description
      */
-    public BasicPlayerEvent(Object source, int code, int position, double value, Object desc, int index)
-    {
+    public BasicPlayerEvent(Object source, int code, int position, double value, Object desc, int index) {
         this.value = value;
         this.position = position;
         this.source = source;
@@ -73,65 +72,86 @@ public class BasicPlayerEvent
 
     /**
      * Return code of the event triggered.
+     *
      * @return
      */
-    public int getCode()
-    {
+    public int getCode() {
         return code;
     }
 
     /**
      * Return position in the stream when event occured.
+     *
      * @return
      */
-    public int getPosition()
-    {
+    public int getPosition() {
         return position;
     }
 
     /**
-     * Return value related to event triggered. 
+     * Return value related to event triggered.
+     *
      * @return
      */
-    public double getValue()
-    {
+    public double getValue() {
         return value;
     }
 
     /**
      * Return description.
+     *
      * @return
      */
-    public Object getDescription()
-    {
+    public Object getDescription() {
         return description;
     }
 
-    public Object getSource()
-    {
+    public Object getSource() {
         return source;
     }
 
-	//====================================================================
+    //====================================================================
     // Changed for CASAA, 2010
-    public int getIndex()
-    {
-    	return index;
+    public int getIndex() {
+        return index;
     }
 
-    public String toString()
-    {
-        if (code == OPENED) return "OPENED:" + position;
-        else if (code == OPENING) return "OPENING:" + position + ":" + description;
-        else if (code == PLAYING) return "PLAYING:" + position;
-        else if (code == STOPPED) return "STOPPED:" + position;
-        else if (code == PAUSED) return "PAUSED:" + position;
-        else if (code == RESUMED) return "RESUMED:" + position;
-        else if (code == SEEKING) return "SEEKING:" + position;
-        else if (code == SEEKED) return "SEEKED:" + position;
-        else if (code == EOM) return "EOM:" + position;
-        else if (code == PAN) return "PAN:" + value;
-        else if (code == GAIN) return "GAIN:" + value;
-        else return "UNKNOWN:" + position;
+    public String toString() {
+        if (code == OPENED) {
+            return "OPENED:" + position;
+        }
+        else if (code == OPENING) {
+            return "OPENING:" + position + ":" + description;
+        }
+        else if (code == PLAYING) {
+            return "PLAYING:" + position;
+        }
+        else if (code == STOPPED) {
+            return "STOPPED:" + position;
+        }
+        else if (code == PAUSED) {
+            return "PAUSED:" + position;
+        }
+        else if (code == RESUMED) {
+            return "RESUMED:" + position;
+        }
+        else if (code == SEEKING) {
+            return "SEEKING:" + position;
+        }
+        else if (code == SEEKED) {
+            return "SEEKED:" + position;
+        }
+        else if (code == EOM) {
+            return "EOM:" + position;
+        }
+        else if (code == PAN) {
+            return "PAN:" + value;
+        }
+        else if (code == GAIN) {
+            return "GAIN:" + value;
+        }
+        else {
+            return "UNKNOWN:" + position;
+        }
     }
 }

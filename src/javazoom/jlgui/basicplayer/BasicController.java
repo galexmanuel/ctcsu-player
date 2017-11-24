@@ -27,12 +27,12 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * This interface defines player controls available.  
+ * This interface defines player controls available.
  */
-public interface BasicController
-{
+public interface BasicController {
     /**
      * Open inputstream to play.
+     *
      * @param in
      * @throws BasicPlayerException
      */
@@ -40,6 +40,7 @@ public interface BasicController
 
     /**
      * Open file to play.
+     *
      * @param file
      * @throws BasicPlayerException
      */
@@ -47,6 +48,7 @@ public interface BasicController
 
     /**
      * Open URL to play.
+     *
      * @param url
      * @throws BasicPlayerException
      */
@@ -54,6 +56,7 @@ public interface BasicController
 
     /**
      * Skip bytes.
+     *
      * @param bytes
      * @return bytes skipped according to audio frames constraint.
      * @throws BasicPlayerException
@@ -62,24 +65,28 @@ public interface BasicController
 
     /**
      * Start playback.
+     *
      * @throws BasicPlayerException
      */
     public void play() throws BasicPlayerException;
 
     /**
-     * Stop playback. 
+     * Stop playback.
+     *
      * @throws BasicPlayerException
      */
     public void stop() throws BasicPlayerException;
 
     /**
-     * Pause playback. 
+     * Pause playback.
+     *
      * @throws BasicPlayerException
      */
     public void pause() throws BasicPlayerException;
 
     /**
-     * Resume playback. 
+     * Resume playback.
+     *
      * @throws BasicPlayerException
      */
     public void resume() throws BasicPlayerException;
@@ -87,6 +94,7 @@ public interface BasicController
     /**
      * Sets Pan (Balance) value.
      * Linear scale : -1.0 <--> +1.0
+     *
      * @param pan value from -1.0 to +1.0
      * @throws BasicPlayerException
      */
@@ -95,6 +103,7 @@ public interface BasicController
     /**
      * Sets Gain value.
      * Linear scale 0.0  <-->  1.0
+     *
      * @param gain value from 0.0 to 1.0
      * @throws BasicPlayerException
      */

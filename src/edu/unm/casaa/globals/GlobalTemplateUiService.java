@@ -19,94 +19,91 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.globals;
 
-import java.io.File;
+import edu.unm.casaa.main.MainController;
+import edu.unm.casaa.main.TemplateUiService;
 
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import edu.unm.casaa.main.MainController;
-import edu.unm.casaa.main.TemplateUiService;
-import edu.unm.casaa.globals.GlobalCode;
+import java.io.File;
 
 public class GlobalTemplateUiService extends TemplateUiService {
 
-	private GlobalTemplateView	view 	= new GlobalTemplateView();
-	private GlobalDataModel 	data	= new GlobalDataModel();
+    private GlobalTemplateView view = new GlobalTemplateView();
+    private GlobalDataModel data = new GlobalDataModel();
 
-	public GlobalTemplateUiService() {
-        for( int i = 0; i < GlobalCode.numCodes(); i++ ) {
-            GlobalCode  code    = GlobalCode.codeAtIndex( i );
-            JSlider     slider  = view.getSlider( code );
+    public GlobalTemplateUiService() {
+        for (int i = 0; i < GlobalCode.numCodes(); i++) {
+            GlobalCode code = GlobalCode.codeAtIndex(i);
+            JSlider slider = view.getSlider(code);
 
-			slider.addChangeListener( new GlobalTemplateSliderListener( code ) );
-			slider.setValue( data.getRating( code ) ); // Initialize slider to data value.
-		}
+            slider.addChangeListener(new GlobalTemplateSliderListener(code));
+            slider.setValue(data.getRating(code)); // Initialize slider to data value.
+        }
 
-		// Add document listener to text area, so we can save file when text data changes (as we do with sliders).
-		view.getTextArea().getDocument().addDocumentListener( new GlobalTemplateDocumentListener() );
-	}
+        // Add document listener to text area, so we can save file when text data changes (as we do with sliders).
+        view.getTextArea().getDocument().addDocumentListener(new GlobalTemplateDocumentListener());
+    }
 
-	public JPanel getTemplateView() {
-		return view;
-	}
+    public JPanel getTemplateView() {
+        return view;
+    }
 
-	public void writeGlobalsToFile( File file, String filenameAudio ) {
-		data.writeToFile( file, filenameAudio, view.getNotes() );
-	}
+    public void writeGlobalsToFile(File file, String filenameAudio) {
+        data.writeToFile(file, filenameAudio, view.getNotes());
+    }
 
-	//===============================================================
-	// GlobalTemplateDocumentListener
-	//===============================================================
+    //===============================================================
+    // GlobalTemplateDocumentListener
+    //===============================================================
 
-	private class GlobalTemplateDocumentListener implements DocumentListener {
+    private class GlobalTemplateDocumentListener implements DocumentListener {
 
-		public void removeUpdate( DocumentEvent e ) {
-			MainController.instance.globalDataChanged();
-		}
-		
-		public void insertUpdate( DocumentEvent e ) {
-		    MainController.instance.globalDataChanged();
-		}
-		
-		public void changedUpdate( DocumentEvent e ) {
-		    MainController.instance.globalDataChanged();
-		}
-		
-	}
+        public void removeUpdate(DocumentEvent e) {
+            MainController.instance.globalDataChanged();
+        }
 
-	//===============================================================
-	// GlobalTemplateSliderListener
-	//===============================================================
+        public void insertUpdate(DocumentEvent e) {
+            MainController.instance.globalDataChanged();
+        }
 
-	private class GlobalTemplateSliderListener implements ChangeListener {
+        public void changedUpdate(DocumentEvent e) {
+            MainController.instance.globalDataChanged();
+        }
 
-		private GlobalCode code;
+    }
 
-		public GlobalTemplateSliderListener( GlobalCode code ) {
-			this.code = code;
-		}
+    //===============================================================
+    // GlobalTemplateSliderListener
+    //===============================================================
 
-		public void stateChanged( ChangeEvent ce ) {
-			// We save every time data changes, so (to be nice), make sure value is actually changing.
-			JSlider slider = view.getSlider( code );
+    private class GlobalTemplateSliderListener implements ChangeListener {
 
-			if( slider.getValueIsAdjusting() ) {
-				return; // Wait until user releases slider.
-			}
+        private GlobalCode code;
 
-			int rating = slider.getValue();
+        public GlobalTemplateSliderListener(GlobalCode code) {
+            this.code = code;
+        }
 
-			if( data.getRating( code ) == rating ) {
-				return; // No change.
-			}
+        public void stateChanged(ChangeEvent ce) {
+            // We save every time data changes, so (to be nice), make sure value is actually changing.
+            JSlider slider = view.getSlider(code);
 
-			data.setRating( code, rating );
-			MainController.instance.globalDataChanged();
-		}
+            if (slider.getValueIsAdjusting()) {
+                return; // Wait until user releases slider.
+            }
 
-	}
+            int rating = slider.getValue();
+
+            if (data.getRating(code) == rating) {
+                return; // No change.
+            }
+
+            data.setRating(code, rating);
+            MainController.instance.globalDataChanged();
+        }
+
+    }
 }

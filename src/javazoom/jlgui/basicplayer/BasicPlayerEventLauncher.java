@@ -28,8 +28,7 @@ import java.util.Iterator;
 /**
  * This class implements a threaded events launcher.
  */
-public class BasicPlayerEventLauncher extends Thread
-{
+public class BasicPlayerEventLauncher extends Thread {
     private int code = -1;
     private int position = -1;
     private double value = 0.0;
@@ -38,7 +37,7 @@ public class BasicPlayerEventLauncher extends Thread
     private Collection<Object> listeners = null;
     private Object source = null;
 
-	//====================================================================
+    //====================================================================
     // Changed for CASAA, 2010
     // Events are reported by launchers that run in separate threads, so it
     // is possible for listeners to receive events out of order.  Therefore,
@@ -49,6 +48,7 @@ public class BasicPlayerEventLauncher extends Thread
 
     /**
      * Contructor.
+     *
      * @param code
      * @param position
      * @param value
@@ -56,8 +56,7 @@ public class BasicPlayerEventLauncher extends Thread
      * @param listeners
      * @param source
      */
-    public BasicPlayerEventLauncher(int code, int position, double value, Object description, Collection<Object> listeners, Object source)
-    {
+    public BasicPlayerEventLauncher(int code, int position, double value, Object description, Collection<Object> listeners, Object source) {
         super();
         this.code = code;
         this.position = position;
@@ -67,13 +66,10 @@ public class BasicPlayerEventLauncher extends Thread
         this.source = source;
     }
 
-    public void run()
-    {
-        if (listeners != null)
-        {
+    public void run() {
+        if (listeners != null) {
             Iterator<Object> it = listeners.iterator();
-            while (it.hasNext())
-            {
+            while (it.hasNext()) {
                 BasicPlayerListener bpl = (BasicPlayerListener) it.next();
                 BasicPlayerEvent event = new BasicPlayerEvent(source, code, position, value, description, index);
                 bpl.stateUpdated(event);

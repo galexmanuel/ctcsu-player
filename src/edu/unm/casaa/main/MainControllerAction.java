@@ -18,23 +18,22 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.main;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 // MainControllerAction provides mechanism for key bindings to pass messages
 // to MainController.
 class MainControllerAction extends AbstractAction {
 
-	private static final long 	serialVersionUID 	= 1L;
-	private String				actionCommand		= null;
+    private static final long serialVersionUID = 1L;
+    private String actionCommand = null;
 
-	public MainControllerAction( String text, String actionCommand ) {
-		super( text );
-		this.actionCommand	= actionCommand;
-	}
+    public MainControllerAction(String text, String actionCommand) {
+        super(text);
+        this.actionCommand = actionCommand;
+    }
 
-	public void actionPerformed( ActionEvent e ) {
-	    MainController.instance.handleAction( actionCommand ); // Pass to MainController.
-	}
+    public void actionPerformed(ActionEvent e) {
+        MainController.instance.handleAction(actionCommand); // Pass to MainController.
+    }
 }

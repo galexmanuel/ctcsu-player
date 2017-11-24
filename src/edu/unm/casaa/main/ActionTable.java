@@ -18,26 +18,25 @@ This source code file is part of the CASAA Treatment Coding System Utility
 
 package edu.unm.casaa.main;
 
+import javax.swing.*;
 import java.util.HashMap;
-
-import javax.swing.Action;
 
 // Wrapper for a String->Action map.  Asserts input and output is non-null.
 public class ActionTable {
-	private HashMap< String, Action > map = new HashMap< String, Action >();
+    private HashMap<String, Action> map = new HashMap<String, Action>();
 
-	public void	put( String key, Action action ) {
-		assert( action != null );
-		assert( key != null );
-		map.put( key, action );
-	}
+    public void put(String key, Action action) {
+        assert (action != null);
+        assert (key != null);
+        map.put(key, action);
+    }
 
-	// Get action mapped to given name.
-	public Action get( String key ) {
-		assert( key != null );
-		Action result = map.get( key );
+    // Get action mapped to given name.
+    public Action get(String key) {
+        assert (key != null);
+        Action result = map.get(key);
 
-		assert( result != null ) : key;
-		return result;
-	}
+        assert (result != null) : key;
+        return result;
+    }
 };
